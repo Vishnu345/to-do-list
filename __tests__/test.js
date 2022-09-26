@@ -46,9 +46,8 @@ describe("TdoList Test Suite", () => {
   });
   test("test4", () => {
     let dt = dueToday();
-    expect(dt.length).toBe(2);
-    expect(dt[0]).toBe(all[0]);
-    expect(dt[1]).toBe(all[1]);
+    expect(dt.length).toBe(1);
+    expect(dt[0]).toBe(all[1]);
   });
   test("test5", () => {
     all[0].dueDate = tomorrow;
