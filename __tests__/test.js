@@ -42,14 +42,18 @@ describe("TdoList Test Suite", () => {
     all[0].dueDate = yesterday;
     let od = overdue();
     expect(od.length).toBe(1);
+    expect(od[0]).toBe(all[0]);
   });
   test("test4", () => {
     let dt = dueToday();
-    expect(dt.length).toBe(1);
+    expect(dt.length).toBe(2);
+    expect(dt[0]).toBe(all[0]);
+    expect(dt[1]).toBe(all[1]);
   });
   test("test5", () => {
     all[0].dueDate = tomorrow;
     let dl = dueLater();
     expect(dl.length).toBe(1);
+    expect(dl[0]).toBe(all[0]);
   });
 });
