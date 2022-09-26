@@ -15,44 +15,53 @@ const tomorrow = formattedDate(
 );
 const { all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
 
-describe("TdoList Test Suite", () => {
+describe("TodoList Test Suite", () => {
   beforeAll(() => {
     add({
       title: "todo1",
       completed: false,
       dueDate: today,
     });
+    add({
+      title: "todo2",
+      completed: false,
+      dueDate: yesterday,
+    });
+    add({
+      title: "todo3",
+      completed: false,
+      dueDate: tomorrow,
+    });
   });
   test("add", () => {
     const count = all.length;
     add({
-      title: "todo1",
-      completed: false,
+      title: "todo4",
+      completed: true,
       dueDate: today,
     });
     expect(all.length).toBe(count + 1);
   });
-  test("test2", () => {
+  test("markAsComplete", () => {
     expect(all[0].completed).toBe(false);
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
   });
 
-  test("test3", () => {
-    all[0].dueDate = yesterday;
-    let od = overdue();
-    expect(od.length).toBe(1);
-    expect(od[0]).toBe(all[0]);
+  test("overdue_items", () => {
+    let overdue_list = overdue();
+    expect(overdue_list.length).toBe(1);
+    expect(overdue_list[0]).toBe(all[1]);
   });
-  test("test4", () => {
-    let dt = dueToday();
-    expect(dt.length).toBe(1);
-    expect(dt[0]).toBe(all[1]);
+  test("dueToday_items", () => {
+    let dueToday_list = dueToday();
+    expect(dueToday_list.length).toBe(2);
+    expect(dueToday_list[0]).toBe(all[0]);
+    expect(dueToday_list[1]).toBe(all[3]);
   });
-  test("test5", () => {
-    all[0].dueDate = tomorrow;
-    let dl = dueLater();
-    expect(dl.length).toBe(1);
-    expect(dl[0]).toBe(all[0]);
+  test("dueLater_items", () => {
+    let dueLater_list = dueLater();
+    expect(dueLater_list.length).toBe(1);
+    expect(dueLater_list[0]).toBe(all[2]);
   });
 });
