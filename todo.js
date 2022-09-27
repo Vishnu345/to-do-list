@@ -6,12 +6,6 @@ const todoList = () => {
 
   var dateToday = new Date();
   const today = formattedDate(dateToday);
-  const yesterday = formattedDate(
-    new Date(new Date().setDate(dateToday.getDate() - 1))
-  );
-  const tomorrow = formattedDate(
-    new Date(new Date().setDate(dateToday.getDate() + 1))
-  );
 
   const add = (todoItem) => {
     all.push(todoItem);
@@ -21,7 +15,7 @@ const todoList = () => {
   };
 
   const overdue = () => {
-    let overdue_list = all.filter((item) => item.dueDate === yesterday);
+    let overdue_list = all.filter((item) => item.dueDate < today);
     return overdue_list;
   };
 
@@ -31,7 +25,7 @@ const todoList = () => {
   };
 
   const dueLater = () => {
-    let dueLater_list = all.filter((item) => item.dueDate === tomorrow);
+    let dueLater_list = all.filter((item) => item.dueDate > today);
     return dueLater_list;
   };
 
