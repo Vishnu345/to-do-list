@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const todoList = require("../todo");
+const todoList = require("../index");
 const formattedDate = (d) => {
   return d.toISOString().split("T")[0];
 };
